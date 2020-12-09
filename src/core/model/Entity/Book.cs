@@ -4,16 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FusionBookStore.Entity
+namespace Fusion.Entity
 {
     public class Book : EntityBase
     {
-        public Book()
-        {
-
-        }
-
-
         public string Name { get; set; }
 
         public double Price { get; set; }
@@ -24,10 +18,15 @@ namespace FusionBookStore.Entity
 
         public int Page { get; set; }
 
-        public string PhotoUrl { get; set; }
+        public Photo Photo { get; set; }
 
         public List<int> Tags { get; set; }
 
         public virtual User User { get; set; }
+
+        public Book()
+        {
+
+        }
     }
 }

@@ -1,23 +1,22 @@
-﻿using FusionBookStore.Entity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Fusion.Entity;
 
-namespace FusionBookStore
+namespace Fusion
 {
     class Program
     {
         static void Main(string[] args)
         {
-
+            /*
             User currUser;
             Book currBook;
             FusionDb db = new FusionDb();
 
-
-            /*db.Users.Add(new User {
+            db.Users.Add(new User {
                 Username = "Chae",
                 Password = "6789",
                 Address  = "Ofis"
@@ -25,7 +24,7 @@ namespace FusionBookStore
             });
             db.SaveChanges();*/
 
-
+            /*
             var data = db.Users.Where(x => x.Username == "Norius").ToList();
             if (data.Count == 1)
             {
@@ -33,6 +32,7 @@ namespace FusionBookStore
                 Console.WriteLine(currUser.Cart.Price);
                 
             }
+            */
 
            /* var data = db.Books.Where(x => x.Name == "berk kitap").ToList();
             if (data.Count == 1)
@@ -43,12 +43,6 @@ namespace FusionBookStore
                 Console.WriteLine(currUser.Address);
 
             }*/
-
-            
-
-
-
-
         }
     }
 }

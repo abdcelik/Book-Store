@@ -1,17 +1,16 @@
-﻿using FusionBookStore.Entity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Fusion.Entity;
 
-namespace FusionBookStore
+namespace Fusion
 {
     class FusionDb : DbContext
     {
-        public FusionDb()
-            : base(@"Data Source=.\sqlexpress;Initial Catalog=FusionDb;Integrated Security=True")
+        public FusionDb() : base(@"Data Source=.\sqlexpress;Initial Catalog=FusionDb;Integrated Security=True")
         {
 
         }
@@ -23,7 +22,5 @@ namespace FusionBookStore
         public DbSet<Cart> Carts { get; set; }
 
         public DbSet<Order> Orders { get; set; }
-
-
     }
 }
