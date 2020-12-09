@@ -20,7 +20,7 @@ namespace Fusion.Entity
 
         public Photo Photo { get; set; }
 
-        public List<int> Tags { get; set; }
+        public List<Tag> Tags { get; set; }
 
         public virtual User User { get; set; }
 
