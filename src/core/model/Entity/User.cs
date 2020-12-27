@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Fusion.Entity
+namespace FusionBookieDB.Entity
 {
     public class User : Person
     {
@@ -12,7 +12,12 @@ namespace Fusion.Entity
         public virtual List<Order> OldSales { get; set; }
         public virtual List<Order> CurrOrder { get; set; }
 
-        public User(String UserName, String Password, String Name, String Surname) : base(Name,Surname)
+        public User()
+        {
+
+        }
+
+        public User(String UserName, String Password, String Name, String Surname) : base(Name, Surname)
         {
             this.UserName = UserName;
             this.Password = Password;
@@ -24,7 +29,18 @@ namespace Fusion.Entity
 
         public void BuyCart()
         {
-            // TO DO
+            // TODO
+        }
+
+        //?
+        public void UpdateUser()
+        {
+            //TODO
+        }
+
+        public void AddSale()
+        {
+            //TODO
         }
 
         public void AddBookToCart(Book book) { Cart.AddBook(book); }
@@ -32,5 +48,12 @@ namespace Fusion.Entity
         public bool RemoveBookFromCart(Book book) { return Cart.RemoveBook(book); }
 
         public override String ToString() { return String.Format("{0}UserName: {1}\nPassword: {2}\n", base.ToString(), UserName, Password); }
+
+        public List<string> GetUserInfo()
+        {
+            //TODO
+
+            return null;
+        }
     }
 }

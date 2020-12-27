@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fusion.Entity
+namespace FusionBookieDB.Entity
 {
     public class Person : EntityBase
     {
@@ -13,6 +13,11 @@ namespace Fusion.Entity
         {
             this.Name = Name;
             this.Surname = Surname;
+        }
+
+        public Person()
+        {
+
         }
 
         public override string ToString() { return String.Format("Name: {0}\nSurname: {1}\nAddress: {2}\nPhone Number: {3}\n", Name, Surname, Address, PhoneNumber); }

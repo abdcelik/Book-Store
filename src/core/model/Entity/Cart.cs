@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
 
-namespace Fusion.Entity
+namespace FusionBookieDB.Entity
 {
     public class Cart : EntityBase
     {
         public virtual List<Book> Books { get; set; }
         public double Price { get; set; }
 
-        public Cart() { Books = new List<Book>(); }
+        public Cart() {
+
+        }
 
         public void AddBook(Book book)
         {

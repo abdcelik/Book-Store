@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fusion.Entity
+namespace FusionBookieDB.Entity
 {
     public class Book : EntityBase
     {
@@ -18,15 +18,32 @@ namespace Fusion.Entity
 
         public int Page { get; set; }
 
-        public Photo Photo { get; set; }
+        public string PhotoUrl { get; set; }
 
-        public List<Tag> Tags { get; set; }
+        public virtual string Category_1 { get; set; }
+
+        public virtual string Category_2 { get; set; }
+
+        public virtual string Category_3 { get; set; }
+
+        public int FilterID { get; set; }
 
         public virtual User User { get; set; }
 
         public Book()
         {
-
+            
         }
+
+        
+
+        public List<string> GetBookInfo()
+        {
+            //TODO
+
+            return null;
+        }
+
+        //TODO Book const
     }
 }

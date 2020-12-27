@@ -1,27 +1,23 @@
-﻿namespace Fusion.Entity
+﻿namespace FusionBookieDB.Entity
 {
     public enum Tag
     {
         Art_Photography = 2,
         Biography_Memoir = 3,
-        Business_Investing = 5,
-        Childreens_Book = 7,
-        Comics_Graphic_Novels = 11,
-        Cooking = 13,
-        Fantasy = 17,
-        History = 19,
-        Horror = 23,
-        Humer_Games = 29,
-        Literature_Fiction = 31,
-        Mystery_Thrillers_Crime = 37,
-        Nonfiction = 41,
-        Poetry = 43,
-        Romance = 47,
-        Science_Fiction = 53,
-        Science_Technology = 59,
-        Self_Development_Hobbies = 61,
-        Foreing_Languages = 67,
-        Sprituality_Religion = 71,
-        Travel = 73
+        Childreens_Book = 5,
+        Comics = 7,
+        Cooking = 11,
+        Fantasy = 13,
+        History = 17,
+        Horror = 19,
+        Humer_Games = 23,
+        Nonfiction = 29,
+        Poetry = 31,
+        Romance =37, 
+        Science_Fiction = 41,
+        Foreing_Languages = 43,
+        Travel = 47
     }
+
+    
 }
