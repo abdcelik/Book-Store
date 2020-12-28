@@ -10,7 +10,7 @@ namespace FusionBookieDB
     public class BookStoreServices
     {
 
-        FusionDb Db = new FusionDb();
+        static FusionDb Db = new FusionDb();
 
         public static User Login()
         {
@@ -29,10 +29,35 @@ namespace FusionBookieDB
 
         public static List<Category> GetCategories()
         {
-            //TODO
+            var data = Db.Categories.ToList();
+            List<Category> Categories = data;
 
-            return null;
+            if (Categories.Count != 0)
+                return Categories;
+            else
+                return null;
         }
+
+        public static User GetUser(int UserID)
+        {
+            var data = Db.Users.Where(x => x.ID == UserID).ToList();
+
+            if (data.Count == 1)
+                return data.FirstOrDefault();
+            else
+                return null;
+        }
+
+        public static Book GetBook(int BookID)
+        {
+            var data = Db.Books.Where(x => x.ID == BookID).ToList();
+
+            if (data.Count == 1)
+                return data.FirstOrDefault();
+            else
+                return null;
+        }
+
 
         public static List<Book> Filter()
         {
