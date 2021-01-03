@@ -12,11 +12,20 @@ namespace FusionBookieDB
 
         static FusionDb Db = new FusionDb();
 
-        public static User Login(User user) { return Db.Users.Find(user); }
+        public static User Login()
+        {
+            //TODO
 
-        public static bool SignUp(User user) { return Db.Users.Where(x => x.UserName.Equals(user.UserName)).ToList() == null; }
+            return null;
+        }
 
-        public static List<Book> Filter(int FilterID) { return Db.Books.Where(x => x.FilterID == FilterID && x.BookStatus == 0).ToList(); }
+
+        public static User SignUp()
+        {
+            //TODO
+
+            return null;
+        }
 
         public static List<Category> GetCategories()
         {
@@ -48,5 +57,18 @@ namespace FusionBookieDB
             else
                 return null;
         }
+
+
+        public static List<Book> Filter()
+        {
+            //TODO
+
+            return null;
+        }
+
+
+
+
+
     }
 }
