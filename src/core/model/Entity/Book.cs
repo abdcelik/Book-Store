@@ -30,6 +30,8 @@ namespace FusionBookieDB.Entity
 
         public virtual User User { get; set; }
 
+        public int BookStatus { get; set; }
+
         public Book()
         {
             
@@ -46,6 +48,7 @@ namespace FusionBookieDB.Entity
             this.PhotoUrl   = photourl_;
             this.User       = user_;
             this.FilterID   = 1;
+            this.BookStatus = 0;
 
             SetCategories(categories_);
         }
@@ -76,6 +79,11 @@ namespace FusionBookieDB.Entity
                 else this.Category_3 = ((Tag)categories_[i]).ToString().Replace('_', ' ');
 
             }
+        }
+
+        public string StatusString()
+        {
+            return ((Status)BookStatus).ToString().Replace('_', ' ');
         }
 
 
