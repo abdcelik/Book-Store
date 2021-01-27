@@ -1,0 +1,222 @@
+﻿@{
+    Layout = null;
+}
+
+@using FusionBookieDB.Entity
+@using FusionBookieDB
+
+@model List<Book>
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>
+        Bookie
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="~/Content/TopMenu.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/HomePage.css" type="text/css" />
+    <script type="text/javascript" src="~/Scripts/HomePage.js"></script>
+
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="MtopMenu">
+
+            <div class="MainTitle">
+                <a class="title" href="/">BOOKIE</a>
+            </div>
+
+            <div class="MmedMenu">
+                <div class="searchBox ">
+
+                    <div class="searchArea">
+                        <form id="searchForm" method="get" action="/Search" style="height: 36px">
+                            <input id="searchData" name="q" type="text" class="searchData" placeholder="search books">
+                        </form>
+                    </div>
+
+                    <div class="searchBtn" onclick="searchButton()" style="cursor:pointer">
+                        <i class="fas fa-search searchIcon"></i>
+                    </div>
+
+                </div>
+
+                <div class="customMenu">
+
+                    <div class="MyAccountMenu">
+
+                        <a class="account element" href="/Profile">
+                            <i class="fas fa-user"></i>
+                            <i class="fas fa-caret-down" style="color:#ffad0b "></i>
+                        </a>
+
+                        <div class="dropdown-content">
+                            <a href="/Profile">Profile</a>
+                            <a href="/MySales">My sales</a>
+                            <a href="/MyOrders">My orders</a>
+                            <a href="/MySolds">My solds</a>
+                            <a href="/SignOut">Sign out</a>
+                        </div>
+
+                    </div>
+
+                    <div class="MyCart">
+
+                        <a class="cart element" href="/Cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span style=" font-size: 10px; letter-spacing: 2px">Cart</span>
+                        </a>
+
+                    </div>
+
+                    <div class="MyAccountMenu">
+                        <a class="signUp element" href="/SignUp">
+                            <i class="fas fa-user-plus"></i>
+                            <span style=" font-size: 10px; letter-spacing: 2px">Sign Up</span>
+                        </a>
+
+                    </div>
+
+                    <div class="MyAccountMenu">
+
+                        <a class="signIn element" href="/SignIn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span style=" font-size: 10px; letter-spacing: 2px">Sign In</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="contentMain">
+            <section class="container">
+
+                <div class="filterArea">
+                    <div class="filterTitle">
+                        <span class="titleF">Filters</span>
+                    </div>
+                    <div class="filterList">
+                        <form id="filterForm" method="get" action="/Search">
+                            <div class="filters">
+                                @{
+
+                                    int catI = 0;
+                                    List<Category> catList = BookStoreServices.GetCategories();
+
+                                    foreach (var i in catList)
+                                    {
+                                        <div class="filterItem">
+                                            <label class="filterLabel">
+                                                <input id="@catList[catI].Name" type="checkbox" name="catID" style="display:none" autocomplete="off" value="@catList[catI].FilterID" onclick="submitFilterForm(event)" />
+                                                @catList[catI].Name
+                                            </label>
+                                        </div>
+                                        catI++;
+                                    }
+                                }
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div class="contentTitle">
+                        <span class="titleF">Recent additions</span>
+                    </div>
+                    <div class="productsArea">
+                        <ul class="products">
+
+                            @foreach (var book in Model)
+                            {
+                                <li class="productView">
+                                    <div id="@book.ID" class="productArea">
+                                        <a class="productUrl" href="/ProductDetail/@book.Name-productID=@book.ID">
+                                            <img class="productPic" src="@book.PhotoUrl">
+                                        </a>
+                                        <span class="productName">
+                                            @book.Name
+                                        </span>
+                                        <div class="productDetails">
+                                            <span class="productAuthor">@book.Author</span>
+                                            <span class="productPrice">@book.Price TL</span>
+                                        </div>
+                                    </div>
+
+                                </li>
+
+                            }
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+            </section>
+
+            <ul class="pagination changer">
+                @{
+                    int begin, end;
+
+                    if (ViewBag.pg_max < 7 || ViewBag.pg - 3 < 1)
+                    {
+                        begin = 1;
+                        end = (ViewBag.pg_max <= 7) ? ViewBag.pg_max : 7;
+                    }
+                    else if (ViewBag.pg + 3 > ViewBag.pg_max)
+                    {
+                        begin = ViewBag.pg_max - 6;
+                        end = ViewBag.pg_max;
+                    }
+                    else
+                    {
+                        begin = ViewBag.pg - 3;
+                        end = ViewBag.pg + 3;
+                    }
+
+
+
+                    for (int i = begin; i <= end; i++)
+                    {
+                        if (ViewBag.pg == i)
+                        {
+                            <li class="active"><a class="color" href="/pg=@i">@i</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="/pg=@i">@i</a></li>
+                        }
+                    }
+                }
+            </ul>
+
+        </div>
+
+
+        <footer id="footer">
+        </footer>
+    </div>
+</body>
+</html>
+
+

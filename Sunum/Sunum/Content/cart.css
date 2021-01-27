@@ -1,0 +1,37 @@
+.cart-total-view{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 3rem;
+    margin-right: 2rem;
+}
+
+.cart-total-title{
+    background-color: #ffad0b;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.cart-total-price{
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.cart-total-buy{
+    width: 50%;
+    align-self: center;
+    font-size: 1.5rem;
+    background-color: #ffad0b;
+}
+
+.cart-total-buy:hover{
+    background-color: white;
+    border-color: #ffad0b;
+}
+
+.sellerInfo{
+    text-align: center;
+
+}

@@ -1,0 +1,233 @@
+﻿@{
+    Layout = null;
+}
+
+@using FusionBookieDB
+@using FusionBookieDB.Entity
+
+@model List<Book>
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>
+        Bookie
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="~/Content/TopMenu.css" />
+
+    <link rel="stylesheet" href="~/Content/HomePage.css" />
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="MtopMenu">
+
+            <div class="MainTitle">
+                <a class="title" href="/">BOOKIE</a>
+            </div>
+
+            <div class="MmedMenu">
+                <div class="searchBox ">
+
+                    <div class="searchArea">
+                        <form id="searchForm" method="get" action="/Search" style="height: 36px">
+                            <input id="searchData" name="q" type="text" value="@ViewBag.q" class="searchData" placeholder="search books">
+                        </form>
+                    </div>
+
+                    <div class="searchBtn" onclick="searchButton()" style="cursor:pointer">
+                        <i class="fas fa-search searchIcon"></i>
+                    </div>
+
+                </div>
+
+                <div class="customMenu">
+
+                    <div class="MyAccountMenu">
+
+                        <a class="account element" href="/Profile">
+                            <i class="fas fa-user"></i>
+                            <i class="fas fa-caret-down" style="color:#ffad0b "></i>
+                        </a>
+
+                        <div class="dropdown-content">
+                            <a href="/Profile">Profile</a>
+                            <a href="/MySales">My sales</a>
+                            <a href="/MyOrders">My orders</a>
+                            <a href="/MySolds">My solds</a>
+                            <a href="#">Sign out</a>
+                        </div>
+
+                    </div>
+
+                    <div class="MyCart">
+
+                        <a class="cart element" href="/Cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span style=" font-size: 10px; letter-spacing: 2px">Cart</span>
+                        </a>
+
+                    </div>
+
+                    <div class="MyAccountMenu">
+                        <a class="signUp element" href="/SignUp">
+                            <i class="fas fa-user-plus"></i>
+                            <span style=" font-size: 10px; letter-spacing: 2px">Sign Up</span>
+                        </a>
+
+                    </div>
+
+                    <div class="MyAccountMenu">
+
+                        <a class="signIn element" href="/SignIn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span style=" font-size: 10px; letter-spacing: 2px">Sign In</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="contentMain">
+            <section class="container">
+
+                <div class="filterArea">
+                    <div class="filterTitle">
+                        <span class="titleF">Filters</span>
+                    </div>
+                    <div class="filterList">
+                        <form id="combinedForm" method="get" action="/Search">
+                            <input id="hiddenSearchData" type="hidden" name="q" />
+                            <div class="filters">
+                                @{
+                                    string[] catNames = Enum.GetNames(typeof(Tag));
+                                    for (int i = 0; i < catNames.Length; i++)
+                                    {
+                                        catNames[i] = catNames[i].Replace('_', ' ');
+                                    }
+                                    int catI = 0;
+                                    int checkedCat = 0;
+
+                                    foreach (int i in Enum.GetValues(typeof(Tag)))
+                                    {
+                                        <div class="filterItem
+                                             @{if (ViewBag.selectedCats != null && ViewBag.selectedCats.Length>checkedCat && ViewBag.selectedCats[checkedCat] == i)
+                                                 {
+                                                     string c = " checked";
+                                                     @c
+                                                 }
+                                               }
+                                             ">
+                                            <label class="filterLabel">
+                                                <input id="@catNames[catI]" type="checkbox" name="catID" style="display:none" autocomplete="off" value="@i" onclick="submitSearchForm()"
+                                                       @{if (ViewBag.selectedCats != null && ViewBag.selectedCats.Length > checkedCat && ViewBag.selectedCats[checkedCat] == i) { string c = "checked = \"checked\""; checkedCat++; @c  } }>
+                                                @catNames[catI]
+                                            </label>
+                                        </div>
+                                        catI++;
+                                    }
+                                }
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div class="contentTitle">
+                        <span class="titleF">Search Results</span>
+                    </div>
+                    <div class="productsArea">
+                        <ul class="products">
+
+                            @foreach (var book in Model)
+                            {
+                                <li class="productView">
+                                    <div id="@book.ID" class="productArea">
+                                        <a class="productUrl" href="/ProductDetail/@book.Name-productID=@book.ID">
+                                            <img class="productPic" src="@book.PhotoUrl">
+                                        </a>
+                                        <span class="productName">
+                                            @book.Name
+                                        </span>
+                                        <div class="productDetails">
+                                            <span class="productAuthor">@book.Author</span>
+                                            <span class="productPrice">@book.Price TL</span>
+                                        </div>
+                                    </div>
+
+                                </li>
+
+                            }
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+            </section>
+
+            <ul class="pagination changer">
+                @{
+                    int begin, end;
+
+                    if (ViewBag.pg_max < 7 || ViewBag.pg - 3 < 1)
+                    {
+                        begin = 1;
+                        end = (ViewBag.pg_max <= 7) ? ViewBag.pg_max : 7;
+                    }
+                    else if (ViewBag.pg + 3 > ViewBag.pg_max)
+                    {
+                        begin = ViewBag.pg_max - 6;
+                        end = ViewBag.pg_max;
+                    }
+                    else
+                    {
+                        begin = ViewBag.pg - 3;
+                        end = ViewBag.pg + 3;
+                    }
+
+
+
+                    for (int i = begin; i <= end; i++)
+                    {
+                        if (ViewBag.pg == i)
+                        {
+                            <li class="active"><a class="color" href="/Search?q=@ViewBag.q@BookStoreServices.catToUrl(ViewBag.catID)&pg=@i">@i</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="/Search?q=@ViewBag.q@BookStoreServices.catToUrl(ViewBag.selectedCats)&pg=@i">@i</a></li>
+                        }
+                    }
+                }
+            </ul>
+
+        </div>
+
+
+        <footer id="footer">
+        </footer>
+    </div>
+    <script type="text/javascript" src="~/Scripts/HomePage.js"></script>
+</body>
+</html>
+
+

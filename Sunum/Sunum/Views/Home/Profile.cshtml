@@ -1,0 +1,171 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>
+        Bookie
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="~/Content/TopMenu.css" />
+
+    <link rel="stylesheet" href="~/Content/MyProfile.css" />
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="MtopMenu">
+
+            <div class="MainTitle">
+                <a class="title" href="/">BOOKIE</a>
+            </div>
+
+            <div class="MmedMenu">
+                <div class="searchBox ">
+
+                    <div class="searchArea">
+                        <form id="searchForm" method="get" action="/Search" style="height: 36px">
+                            <input id="searchData" name="q" type="text" class="searchData" placeholder="search books">
+                        </form>
+                    </div>
+
+                    <div class="searchBtn" onclick="searchButton()" style="cursor:pointer">
+                        <i class="fas fa-search searchIcon"></i>
+                    </div>
+
+                </div>
+
+                <div class="customMenu">
+
+                    <div class="MyAccountMenu">
+
+                        <a class="account element" href="/Profile">
+                            <i class="fas fa-user"></i>
+                            <i class="fas fa-caret-down" style="color:#ffad0b "></i>
+                        </a>
+
+                        <div class="dropdown-content">
+                            <a href="/Profile">Profile</a>
+                            <a href="/MySales">My sales</a>
+                            <a href="/MyOrders">My orders</a>
+                            <a href="/MySolds">My solds</a>
+                            <a href="#">Sign out</a>
+                        </div>
+
+                    </div>
+
+                    <div class="MyCart">
+
+                        <a class="cart element" href="/Cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span style=" font-size: 10px; letter-spacing: 2px">Cart</span>
+                        </a>
+
+                    </div>
+
+                    <div class="MyAccountMenu">
+                        <a class="signUp element" href="/SignUp">
+                            <i class="fas fa-user-plus"></i>
+                            <span style=" font-size: 10px; letter-spacing: 2px">Sign Up</span>
+                        </a>
+
+                    </div>
+
+                    <div class="MyAccountMenu">
+
+                        <a class="signIn element" href="/SignIn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span style=" font-size: 10px; letter-spacing: 2px">Sign In</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="contentMain">
+            <div class="container bootstrap snippets bootdeys">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-9">
+                        <form class="form-horizontal">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">My Profile</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">E-mail Address</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Username</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Phone Number</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Name</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">SurName</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">New password</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Adress</label>
+                                        <div class="col-sm-10">
+                                            <textarea rows="3" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-10 col-sm-offset-2">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="reset" class="btn btn-default">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+        </footer>
+    </div>
+</body>
+</html>
+

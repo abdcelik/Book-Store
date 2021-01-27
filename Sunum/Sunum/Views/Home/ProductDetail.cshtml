@@ -1,0 +1,136 @@
+﻿@{
+    Layout = null;
+}
+
+@using FusionBookieDB
+@using FusionBookieDB.Entity
+@model Book
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>
+        Bookie
+    </title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="~/Content/TopMenu.css" />
+    <link rel="stylesheet" href="~/Content/Product.css" />
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="MtopMenu">
+
+            <div class="MainTitle">
+                <a class="title" href="/">BOOKIE</a>
+            </div>
+
+            <div class="MmedMenu">
+                <div class="searchBox ">
+
+                    <div class="searchArea">
+                        <form id="searchForm" method="get" action="/Search" style="height: 36px">
+                            <input id="searchData" name="q" type="text" class="searchData" placeholder="search books">
+                        </form>
+                    </div>
+
+                    <div class="searchBtn" onclick="searchButton()" style="cursor:pointer">
+                        <i class="fas fa-search searchIcon"></i>
+                    </div>
+
+                </div>
+
+                <div class="customMenu">
+
+                    <div class="MyAccountMenu">
+
+                        <a class="account element" href="/Profile">
+                            <i class="fas fa-user"></i>
+                            <i class="fas fa-caret-down" style="color:#ffad0b "></i>
+                        </a>
+
+                        <div class="dropdown-content">
+                            <a href="/Profile">Profile</a>
+                            <a href="/MySales">My sales</a>
+                            <a href="/MyOrders">My orders</a>
+                            <a href="/MySolds">My solds</a>
+                            <a href="#">Sign out</a>
+                        </div>
+
+                    </div>
+
+                    <div class="MyCart">
+
+                        <a class="cart element" href="/Cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span style=" font-size: 10px; letter-spacing: 2px">Cart</span>
+                        </a>
+
+                    </div>
+
+                    <div class="MyAccountMenu">
+                        <a class="signUp element" href="/SignUp">
+                            <i class="fas fa-user-plus"></i>
+                            <span style=" font-size: 10px; letter-spacing: 2px">Sign Up</span>
+                        </a>
+
+                    </div>
+
+                    <div class="MyAccountMenu">
+
+                        <a class="signIn element" href="/SignIn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span style=" font-size: 10px; letter-spacing: 2px">Sign In</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="contentMain">
+            <section class="container erase-bg-br">
+                <div class="pro-detail">
+                    <div class="pro-detail-image">
+                        <img class="sa" src="@Model.PhotoUrl">
+                    </div>
+
+                    <div class="pro-detail-details">
+                        <span class="pro-detail-name">@Model.Name</span>
+                        <span class="pro-detail-author">@Model.Author</span>
+                        <span class="pro-detail-price">@Model.Price TL</span>
+                        <div class="pro-detail-tags">
+                            @foreach (var tag in Model.GetCategoryInfo())
+                            {
+                                <span class="pro-detail-tag">@tag</span>
+                            }
+                        </div>
+                        <div class="pro-detail-options">
+                            <button class="pro-detail-option">
+                                ADD TO CART
+                            </button>
+                            <button class="pro-detail-option">
+                                BUY NOW
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+                
+            </section>
+
+        </div>
+    </div>
+
+</body>
+</html>
+
+

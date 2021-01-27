@@ -1,0 +1,18 @@
+.buyerInfo{
+    text-align: center;
+
+}
+
+.delivered{
+    margin-top: 10px;
+    color: white;
+    background-color: green;
+    border-color: green;
+    text-align: center;
+}
+
+.delivered:hover{
+    color: white;
+    background-color: green;
+    border-color: white;
+}
