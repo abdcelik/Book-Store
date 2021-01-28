@@ -28,6 +28,13 @@ namespace FusionBookieDB.Entity
             CurrOrder = new List<Order>();
         }
 
+        public User(String Username, String Email, String PhoneNumber, String Name, String Surname, String Address, String Password) : this(Username, Password, Name, Surname)
+        {
+            this.email = Email;
+            this.PhoneNumber = PhoneNumber;
+            this.Address = Address;
+        }
+
         public void BuyCart()
         {
             // TODO

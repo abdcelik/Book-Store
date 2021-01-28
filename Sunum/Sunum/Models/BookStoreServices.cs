@@ -16,8 +16,10 @@ namespace FusionBookieDB
             return Db.Users.Where(x => x.UserName.Equals(Username) && x.Password.Equals(Password)).FirstOrDefault(); 
         }
 
-        public static bool SignUp(User user) { 
-            return Db.Users.Where(x => x.UserName.Equals(user.UserName)).ToList() == null; 
+        public static bool SignUp(String Username, String Email, String PhoneNumber, String Name, String Surname, String Address, String Password) {
+            if (Db.Users.Where(x => x.UserName.Equals(Username) || x.email.Equals(Email)) != null)
+                return false;
+            return Db.Users.Add(new User(Username, Email, PhoneNumber, Name, Surname, Address, Password)) != null;
         }
 
         public static List<Book> Filter(int[] filterList, string querry) {
