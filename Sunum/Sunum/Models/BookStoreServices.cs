@@ -16,10 +16,42 @@ namespace FusionBookieDB
             return Db.Users.Where(x => x.UserName.Equals(Username) && x.Password.Equals(Password)).FirstOrDefault(); 
         }
 
-        public static bool SignUp(String Username, String Email, String PhoneNumber, String Name, String Surname, String Address, String Password) {
+        public static bool SignUp(String Username, String Email, String PhoneNumber, String Name, String Surname, String Address, String Password)
+        {
             if (Db.Users.Where(x => x.UserName.Equals(Username) || x.email.Equals(Email)) != null)
                 return false;
-            return Db.Users.Add(new User(Username, Email, PhoneNumber, Name, Surname, Address, Password)) != null;
+
+            Db.Users.Add(new User(Username, Email, PhoneNumber, Name, Surname, Address, Password));
+            Db.SaveChanges();
+            return true;
+        }
+
+        public static bool UserUpdate(int ID, String Email, String Username, String PhoneNumber, String Name, String Surname, String NewPassword, String Address)
+        {
+            User user;
+
+            if ((user = Db.Users.Where(x => x.ID == ID).FirstOrDefault()) != null)
+            {
+                user.Update(Email, Username, PhoneNumber, Name, Surname, NewPassword, Address);
+                Db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public static bool AddBook(int ID, String Name, double Price, String Author, String PhotoUrl, List<int> Categories, String Summary)
+        {
+            User user;
+
+            if ((user = Db.Users.Where(x => x.ID == ID).FirstOrDefault()) != null)
+            {
+                Book book = new Book(Name, Price, Author, "-", 0, PhotoUrl, Categories, user);
+                user.AddBook(book);
+                Db.Books.Add(book);
+                Db.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public static List<Book> Filter(int[] filterList, string querry) {
