@@ -40,15 +40,20 @@ namespace FusionBookieDB.Entity
             // TODO
         }
 
-        //?
-        public void UpdateUser()
+        public void Update(String Email, String Username, String PhoneNumber, String Name, String Surname, String NewPassword, String Address)
         {
-            //TODO
+            this.email = Email;
+            this.UserName = Username;
+            this.PhoneNumber = PhoneNumber;
+            this.Name = Name;
+            this.Surname = Surname;
+            this.Password = NewPassword;
+            this.Address = Address;
         }
 
-        public void AddSale()
+        public void AddBook(Book book)
         {
-            //TODO
+            CurrSales.Add(book);
         }
 
         public void AddBookToCart(Book book) { Cart.AddBook(book); }
